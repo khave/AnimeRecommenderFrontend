@@ -3,19 +3,20 @@ import "./App.css";
 import AnimeList from "./component/AnimeList";
 
 const apiRequest = async (query) => {
-  const api = 'https://lpsm350e68.execute-api.eu-central-1.amazonaws.com/prod/'
-  // Add query parameters
-  const url = new URL(api);
-  url.query = new URLSearchParams({
-    query: query,
-  });
-  url.top_n = new URLSearchParams({
-    top_n: 150,
-  });
-  // Fetch data
-  const response = await fetch(url);
-  const data = await response.json();
-  return data;
+  var requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+  };
+
+  return await fetch("https://lpsm350e68.execute-api.eu-central-1.amazonaws.com/prod/?query=" + query + "&top_n=150", requestOptions)
+  .then(response => response.json())
+  .then(result => result)
+  .catch(error => console.log('error', error));
+  
+  // return await fetch("https://lpsm350e68.execute-api.eu-central-1.amazonaws.com/prod/?query=" + query + "&top_n=150", requestOptions)
+  //   .then(response => response.text())
+  //   .then(result => console.log(result))
+  //   .catch(error => console.log('error', error));
 };
   
 //   var formData = new FormData();

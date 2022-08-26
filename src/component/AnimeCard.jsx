@@ -8,7 +8,7 @@ const AnimeCard = (props) => {
         <a href={anime["MAL Link"]} rel="noreferrer" target="_blank">
           <img src={anime["Image URL"]} alt={anime.title} />
         </a>
-        <span class="caption">{anime["Anime Title"]}</span>
+        <span className="caption">{anime["Anime Title"]}</span>
       </div>
       <div>
         {/* <p>count: {anime['count']}</p> */}
