@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import AnimeList from "./component/AnimeList";
 
@@ -41,6 +41,44 @@ function App() {
   const [apiData, setApiData] = useState({});
   const [gotData, setgotData] = useState(true);
   const [dataLoading, setdataLoading] = useState(false);
+  const [index, setIndex] = useState(0);
+  const placeholderText = [
+    "An old but classic anime",
+    "Protagonist is a singer and is singing a lot during the anime",
+    "Overpowered protagonist",
+    "Anime with clever protagonist",
+    "Tennis where the protagonist is really good at it",
+    "Silent and cool main protagonist",
+    "Crime drama",
+    "Psychological anime",
+    "Fantasy anime with a strong protagonist set in a fantasy world",
+    "Protagonist is immortal",
+    "Anime about vampires",
+    "Anime that teaches you life lessons like great teacher onizuka",
+    "Ensemble cast that are well developed and set in a big urban city setting",
+    "Gambling",
+    "Gender-bender",
+    "Horror anime that is really scary",
+    "Wholesome yuri",
+    "Really brutal, gory, terrifying zombie anime"
+  ]
+
+  useEffect(() => {
+    const timer = () => {
+      setIndex(prevIndex => {
+        if(prevIndex === placeholderText.length - 1){
+          return 0;
+        } 
+        return prevIndex + 1;
+      })
+    };
+    setInterval(timer, 5000);
+    
+    //cleanup function in order clear the interval timer
+    //when the component unmounts
+    return () => { clearInterval(timer); }
+  }, []);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -65,10 +103,11 @@ function App() {
       <p>Ask for recommendations using the search box below</p>
       <form onSubmit={handleSubmit} className="search">
         <input
+          id="inputID"
           type="text"
           value={animeSearch}
           onChange={(e) => setanimeSearch(e.target.value)}
-          placeholder="Search for anime, e.g Pokemon"
+          placeholder={placeholderText[index]}
         />
         <button
           className="typeReset"

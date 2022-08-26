@@ -9,6 +9,11 @@
   font-size: 72px;
 }
 
+#inputID::placeholder {
+  color: rgba(255, 255, 255);
+  opacity: 0.4;
+}
+
 .app h2 {
   color: rgba(255, 255, 255, 0.575);
   margin-top: 50px;
