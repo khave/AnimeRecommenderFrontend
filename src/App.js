@@ -2,19 +2,33 @@ import { useState } from "react";
 import "./App.css";
 import AnimeList from "./component/AnimeList";
 
-const apiRequest = async (search) => {
-  const api = 'http://127.0.0.1:5000/search'
-  var formData = new FormData();
-  formData.append("query", search);
+const apiRequest = async (query) => {
+  const api = 'https://lpsm350e68.execute-api.eu-central-1.amazonaws.com/prod/'
+  // Add query parameters
+  const url = new URL(api);
+  url.query = new URLSearchParams({
+    query: query,
+  });
+  url.top_n = new URLSearchParams({
+    top_n: 150,
+  });
+  // Fetch data
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
+};
+  
+//   var formData = new FormData();
+//   formData.append("query", search);
 
-  var requestOptions = {
-    method: "POST",
-    body: formData,
-    redirect: "follow",
-  };
+//   var requestOptions = {
+//     method: "POST",
+//     body: formData,
+//     redirect: "follow",
+//   };
 
-  return await fetch(api, requestOptions).then((response) => response.json());
-}
+//   return await fetch(api, requestOptions).then((response) => response.json());
+// }
 
 //const apiRequest = async (search) => {
 //  const api = `https://api.jikan.moe/v3/search/anime?q=${search}`;
