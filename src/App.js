@@ -77,7 +77,7 @@ function App() {
     //cleanup function in order clear the interval timer
     //when the component unmounts
     return () => { clearInterval(timer); }
-  }, []);
+  }, [placeholderText.length]);
 
 
   const handleSubmit = async (event) => {
