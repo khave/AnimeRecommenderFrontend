@@ -1,4 +1,8 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/2250a9a8-0d20-4c37-b9b8-c62d26d7a529/deploy-status)](https://app.netlify.com/sites/anirec/deploys)
+# Anime Recommender Frontend
+Frontend for an Anime Recommender system using artifical intelligence.
 
-# Anime Recommender
-Also known as AniRec
+The frontend is built using React and connects to the backend through its API.
+<br>
+Run the application through npm start
+<br><br>
+For more info and the backend code look [here](https://github.com/khave/AnimeRecommenderBackend)

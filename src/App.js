@@ -7,34 +7,12 @@ const apiRequest = async (query) => {
     method: 'GET',
     redirect: 'follow'
   };
-
-  return await fetch("https://lpsm350e68.execute-api.eu-central-1.amazonaws.com/prod/?query=" + query + "&top_n=150", requestOptions)
+  return await fetch("http://127.0.0.1:5000/search?query=" + query + "&top_n=500", requestOptions)
   .then(response => response.json())
   .then(result => result)
   .catch(error => console.log('error', error));
-  
-  // return await fetch("https://lpsm350e68.execute-api.eu-central-1.amazonaws.com/prod/?query=" + query + "&top_n=150", requestOptions)
-  //   .then(response => response.text())
-  //   .then(result => console.log(result))
-  //   .catch(error => console.log('error', error));
 };
-  
-//   var formData = new FormData();
-//   formData.append("query", search);
 
-//   var requestOptions = {
-//     method: "POST",
-//     body: formData,
-//     redirect: "follow",
-//   };
-
-//   return await fetch(api, requestOptions).then((response) => response.json());
-// }
-
-//const apiRequest = async (search) => {
-//  const api = `https://api.jikan.moe/v3/search/anime?q=${search}`;
-//  return await fetch(api).then((res) => res.json());
-//};
 
 function App() {
   const [animeSearch, setanimeSearch] = useState("");
@@ -42,6 +20,7 @@ function App() {
   const [gotData, setgotData] = useState(true);
   const [dataLoading, setdataLoading] = useState(false);
   const [index, setIndex] = useState(0);
+  
   const placeholderText = [
     "An old but classic anime",
     "Protagonist is a singer and is singing a lot during the anime",
@@ -85,6 +64,7 @@ function App() {
     setgotData(false);
     setdataLoading(true);
     const data = await apiRequest(animeSearch).then((res) => res);
+    console.log("Data: ", data);
     setApiData(data);
     setdataLoading(false);
   };
